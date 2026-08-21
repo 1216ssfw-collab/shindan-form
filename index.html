@@ -605,9 +605,8 @@
   let selectedDate = null;
   let selectedTime = null;
 
-  // 予約可能な日程と時間枠
-  // ここを編集すれば空き枠を変更できる
-  var availableSlots = {
+  // 予約可能な日程と時間枠（マスターデータ）
+  var masterSlots = {
     // 8月
     '2026-08-23': ['13:00〜14:00', '16:30〜17:30'],
     '2026-08-24': ['10:00〜11:00', '14:00〜15:00'],
@@ -629,6 +628,54 @@
     '2026-09-26': ['13:00〜14:00', '20:00〜21:00'],
     '2026-09-28': ['10:00〜11:00', '16:30〜17:30']
   };
+
+  // 実際に表示する空き枠（予約済みを除外した後のデータ）
+  var availableSlots = {};
+  var bookedData = [];
+
+  // スプレッドシートから予約済みデータを取得
+  function fetchBookedSlots(callback) {
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbwr2ppl5E2mWg5BPi3jo4O_9z7ZgamvICQfQVqA6XBZe45lU7UWhDIkKVK-b0wEOlODHA/exec?t=' + Date.now();
+    fetch(apiUrl)
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        bookedData = (data.booked || []).map(function(s) {
+          return s.replace(/\s+/g, '');
+        });
+        updateAvailableSlots();
+        callback();
+      })
+      .catch(function() {
+        // API取得失敗時はマスターデータをそのまま使う
+        availableSlots = JSON.parse(JSON.stringify(masterSlots));
+        callback();
+      });
+  }
+
+  // マスターから予約済みを除外して空き枠を更新
+  function updateAvailableSlots() {
+    availableSlots = {};
+    var dayNames = ['日','月','火','水','木','金','土'];
+
+    Object.keys(masterSlots).forEach(function(dateStr) {
+      var parts = dateStr.split('-');
+      var y = parseInt(parts[0]);
+      var m = parseInt(parts[1]);
+      var d = parseInt(parts[2]);
+      var dow = new Date(y, m - 1, d).getDay();
+      var dayName = dayNames[dow];
+
+      var remaining = masterSlots[dateStr].filter(function(slot) {
+        // 「2026年8月28日（金）20:00〜21:00」形式で比較（空白除去済み）
+        var bookedStr = (y + '年' + m + '月' + d + '日（' + dayName + '）' + slot).replace(/\s+/g, '');
+        return bookedData.indexOf(bookedStr) === -1;
+      });
+
+      if (remaining.length > 0) {
+        availableSlots[dateStr] = remaining;
+      }
+    });
+  }
 
   function renderCalendar() {
     var monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
@@ -728,7 +775,10 @@
     document.getElementById('timeSlots').style.display = 'none';
   });
 
-  renderCalendar();
+  // 初回読み込み：予約済みデータを取得してからカレンダー表示
+  fetchBookedSlots(function() {
+    renderCalendar();
+  });
 
   // フォーム送信 → Googleフォームに送信
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
