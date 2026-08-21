@@ -386,6 +386,26 @@
     background: #0f2a6b;
   }
 
+  /* 時間枠ボタン */
+  .time-btn {
+    padding: 10px 18px;
+    border: 2px solid #1a3a8b;
+    background: #fff;
+    color: #1a3a8b;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .time-btn:hover {
+    background: #eef2fb;
+  }
+  .time-btn.selected {
+    background: #1a3a8b;
+    color: #fff;
+  }
+
   /* セパレーター */
   .separator {
     border: none;
@@ -489,6 +509,12 @@
       </table>
     </div>
 
+    <!-- 時間枠選択 -->
+    <div id="timeSlots" style="display:none; margin-bottom: 24px;">
+      <p id="timeSlotsLabel" style="font-size:15px; font-weight:700; margin-bottom:12px;"></p>
+      <div id="timeSlotsContainer" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+    </div>
+
     <h2 class="section-title">選択した日程</h2>
     <div class="selected-date-box">
       <div class="sd-row">
@@ -570,82 +596,141 @@
 
 <script>
 (function() {
-  // カレンダー機能
   let currentYear = 2026;
-  let currentMonth = 7; // 0-indexed, 7 = August
+  let currentMonth = 7;
   let selectedDate = null;
+  let selectedTime = null;
 
-  // 予約可能な日付（例として設定 - 実際の日程に変更してください）
-  const availableDates = [
-    '2026-08-25', '2026-09-04', '2026-09-05',
-    '2026-09-08', '2026-09-11', '2026-09-12',
-    '2026-09-18', '2026-09-19', '2026-09-25', '2026-09-26'
-  ];
+  // 予約可能な日程と時間枠
+  // ここを編集すれば空き枠を変更できる
+  var availableSlots = {
+    // 8月
+    '2026-08-23': ['13:00〜14:00', '16:30〜17:30'],
+    '2026-08-24': ['10:00〜11:00', '14:00〜15:00'],
+    '2026-08-27': ['10:00〜11:00', '14:00〜15:00', '19:00〜20:00', '21:00〜22:00'],
+    '2026-08-28': ['11:00〜12:00', '20:00〜21:00'],
+    '2026-08-29': ['10:00〜11:00', '13:00〜14:00', '20:00〜21:00'],
+    '2026-08-30': ['10:00〜11:00', '19:00〜20:00', '20:00〜21:00'],
+    '2026-08-31': ['13:00〜14:00', '21:00〜22:00'],
+    // 9月（同様のパターン）
+    '2026-09-03': ['10:00〜11:00', '14:00〜15:00'],
+    '2026-09-04': ['10:00〜11:00', '14:00〜15:00', '19:00〜20:00', '21:00〜22:00'],
+    '2026-09-05': ['11:00〜12:00', '20:00〜21:00'],
+    '2026-09-06': ['10:00〜11:00', '13:00〜14:00', '20:00〜21:00'],
+    '2026-09-07': ['10:00〜11:00', '16:30〜17:30', '19:00〜20:00'],
+    '2026-09-08': ['10:00〜11:00', '14:00〜15:00'],
+    '2026-09-10': ['10:00〜11:00', '14:00〜15:00', '19:00〜20:00', '21:00〜22:00'],
+    '2026-09-11': ['11:00〜12:00', '20:00〜21:00'],
+    '2026-09-12': ['10:00〜11:00', '13:00〜14:00', '20:00〜21:00'],
+    '2026-09-13': ['10:00〜11:00', '19:00〜20:00', '20:00〜21:00'],
+    '2026-09-14': ['13:00〜14:00', '21:00〜22:00'],
+    '2026-09-17': ['10:00〜11:00', '14:00〜15:00', '19:00〜20:00', '21:00〜22:00'],
+    '2026-09-18': ['11:00〜12:00', '20:00〜21:00'],
+    '2026-09-19': ['10:00〜11:00', '13:00〜14:00', '20:00〜21:00'],
+    '2026-09-20': ['10:00〜11:00', '16:30〜17:30', '19:00〜20:00'],
+    '2026-09-21': ['10:00〜11:00', '14:00〜15:00'],
+    '2026-09-24': ['10:00〜11:00', '14:00〜15:00', '19:00〜20:00', '21:00〜22:00'],
+    '2026-09-25': ['11:00〜12:00', '20:00〜21:00'],
+    '2026-09-26': ['10:00〜11:00', '13:00〜14:00', '20:00〜21:00'],
+    '2026-09-27': ['10:00〜11:00', '19:00〜20:00', '20:00〜21:00'],
+    '2026-09-28': ['13:00〜14:00', '21:00〜22:00']
+  };
 
   function renderCalendar() {
-    const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    var monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
     document.getElementById('calMonth').textContent = currentYear + '年' + monthNames[currentMonth];
 
-    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    const today = new Date();
+    var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    var today = new Date();
     today.setHours(0,0,0,0);
 
-    let html = '';
-    let day = 1;
-    const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
+    var html = '';
+    var day = 1;
+    var totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
 
-    for (let i = 0; i < totalCells; i++) {
+    for (var i = 0; i < totalCells; i++) {
       if (i % 7 === 0) html += '<tr>';
-
       if (i < firstDay || day > daysInMonth) {
         html += '<td></td>';
       } else {
-        const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-        const dateObj = new Date(currentYear, currentMonth, day);
-        const isSunday = i % 7 === 0;
-        const isPast = dateObj < today;
-        const isAvailable = availableDates.includes(dateStr);
-        const isSelected = selectedDate === dateStr;
+        var dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+        var dateObj = new Date(currentYear, currentMonth, day);
+        var isSunday = i % 7 === 0;
+        var isPast = dateObj < today;
+        var isAvailable = availableSlots[dateStr] && !isPast;
+        var isSelected = selectedDate === dateStr;
 
-        let cls = [];
+        var cls = [];
         if (isSunday) cls.push('sunday');
         if (isPast) cls.push('past');
-        if (isAvailable && !isPast) cls.push('available');
+        if (isAvailable) cls.push('available');
         if (isSelected) cls.push('selected');
 
         html += '<td class="' + cls.join(' ') + '" data-date="' + dateStr + '">' + day + '</td>';
         day++;
       }
-
       if (i % 7 === 6) html += '</tr>';
     }
 
     document.getElementById('calBody').innerHTML = html;
 
-    // クリックイベント
     document.querySelectorAll('.cal-table td.available').forEach(function(td) {
       td.addEventListener('click', function() {
         selectedDate = this.dataset.date;
+        selectedTime = null;
         renderCalendar();
-        var parts = selectedDate.split('-');
-        var dateText = parts[0] + '年' + parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
-        document.getElementById('selectedDate').textContent = dateText;
-        document.getElementById('field-date').value = dateText;
+        showTimeSlots(selectedDate);
+        document.getElementById('selectedDate').textContent = '';
+        document.getElementById('field-date').value = '';
       });
     });
+  }
+
+  function showTimeSlots(dateStr) {
+    var slots = availableSlots[dateStr];
+    if (!slots) return;
+
+    var parts = dateStr.split('-');
+    var dayNames = ['日','月','火','水','木','金','土'];
+    var d = new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
+    var label = parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日（' + dayNames[d.getDay()] + '）';
+
+    document.getElementById('timeSlotsLabel').textContent = label + ' の空き枠';
+    var container = document.getElementById('timeSlotsContainer');
+    container.innerHTML = '';
+
+    slots.forEach(function(slot) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'time-btn';
+      btn.textContent = slot;
+      btn.addEventListener('click', function() {
+        selectedTime = slot;
+        container.querySelectorAll('.time-btn').forEach(function(b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        var fullText = parts[0] + '年' + label + ' ' + slot;
+        document.getElementById('selectedDate').textContent = fullText;
+        document.getElementById('field-date').value = fullText;
+      });
+      container.appendChild(btn);
+    });
+
+    document.getElementById('timeSlots').style.display = 'block';
   }
 
   document.getElementById('prevMonth').addEventListener('click', function() {
     currentMonth--;
     if (currentMonth < 0) { currentMonth = 11; currentYear--; }
     renderCalendar();
+    document.getElementById('timeSlots').style.display = 'none';
   });
 
   document.getElementById('nextMonth').addEventListener('click', function() {
     currentMonth++;
     if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     renderCalendar();
+    document.getElementById('timeSlots').style.display = 'none';
   });
 
   renderCalendar();
@@ -653,20 +738,14 @@
   // フォーム送信 → Googleフォームに送信
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    if (!selectedDate) {
-      alert('日程を選択してください');
+    if (!selectedDate || !selectedTime) {
+      alert('日程と時間枠を選択してください');
       return;
     }
-
-    // 選択した日程をhiddenフィールドにセット
-    var parts = selectedDate.split('-');
-    document.getElementById('field-date').value =
-      parts[0] + '年' + parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
 
     var formData = new FormData(this);
     var googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf4Z8h3_yVG3tqvWKenXrwnSNgqclyZhyZQxLa-RADza7pVGg/formResponse';
 
-    // 送信ボタンを無効化
     var btn = document.querySelector('.submit-btn');
     btn.disabled = true;
     btn.textContent = '送信中...';
@@ -676,7 +755,6 @@
       body: formData,
       mode: 'no-cors'
     }).then(function() {
-      // no-corsなので常にここに来る（成功扱い）
       document.querySelector('.form-section').innerHTML =
         '<div style="text-align:center;padding:60px 28px;">' +
         '<p style="font-size:22px;font-weight:700;color:#1a3a8b;margin-bottom:20px;">お申込みありがとうございます！</p>' +
