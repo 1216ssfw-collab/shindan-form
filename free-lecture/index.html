@@ -82,7 +82,7 @@
     padding: 20px 28px;
     background: #1a3a8b;
     color: #fff;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     text-decoration: none;
     border-radius: 9999px;
@@ -103,7 +103,6 @@
   .cta-btn .cta-text-wrap {
     text-align: center;
     text-shadow: 0 2px 0 rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2);
-    white-space: nowrap;
   }
   .cta-btn .cta-sub {
     display: block;
@@ -375,6 +374,76 @@
     line-height: 1.9;
     color: #444;
   }
+
+  /* ========== スマホ対応（480px以下） ========== */
+  @media (max-width: 480px) {
+    /* CTA */
+    .cta-btn {
+      font-size: 18px;
+      padding: 16px 20px;
+      gap: 8px;
+    }
+    .cta-btn .cta-sub {
+      font-size: 12px;
+    }
+
+    /* セクション余白 */
+    .text-section {
+      padding: 36px 20px;
+    }
+
+    /* 見出し */
+    .text-section h2 {
+      font-size: 20px;
+    }
+
+    /* 見出し帯 */
+    .heading-band {
+      font-size: 18px;
+      padding: 14px 20px;
+    }
+
+    /* 囲みボックス */
+    .bordered-box {
+      margin: 0 16px;
+      padding: 20px 16px;
+    }
+
+    /* 実績カード内イラスト — 根本原因の修正 */
+    .card-illust {
+      width: 130px !important;
+      margin: -16px -16px 0 0 !important;
+    }
+
+    /* 実績数字 */
+    .result-num-big {
+      font-size: 28px !important;
+    }
+    .result-num-before {
+      font-size: 22px !important;
+    }
+
+    /* 大見出し明朝 */
+    .hero-heading {
+      font-size: 28px !important;
+    }
+    .hero-heading-lg {
+      font-size: 26px !important;
+    }
+
+    /* クロージング */
+    .closing-heading {
+      font-size: 24px !important;
+    }
+
+    /* プロフィール */
+    .profile-section {
+      padding: 36px 20px;
+    }
+    .profile-section .profile-name {
+      font-size: 24px !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -435,7 +504,7 @@
     <p style="font-size: 16px; color: #222; margin-bottom: 32px;">
       ただ
     </p>
-    <p class="mincho" style="font-size: 36px; font-weight: 700; line-height: 1.4; margin-bottom: 40px;">
+    <p class="mincho hero-heading" style="font-size: 36px; font-weight: 700; line-height: 1.4; margin-bottom: 40px;">
       <span class="marker"><span style="color: #C8382B;">"正しい順番"</span><span style="color: #222;">を知らないだけ。</span></span>
     </p>
     <p style="font-size: 16px; color: #222; line-height: 2.2;">
@@ -454,7 +523,7 @@
 
     <!-- さちさん -->
     <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-      <img src="illust-sachi.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <img src="illust-sachi.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
         <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さちさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">結婚式 前撮り営業</p>
@@ -462,14 +531,14 @@
       </div>
       <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：商品説明がメインで、毎回なんとなく商談していた</p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
-      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span style="font-size: 28px; font-weight: 700; color: #333;">20%</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">40%</span></p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span class="result-num-before" style="font-size: 28px; font-weight: 700; color: #333;">20%</span> → <span class="result-num-big" style="font-size: 36px; font-weight: 700; color: #C8382B;">40%</span></p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商品説明から<span style="color: #1a3a8b; font-weight: 700;">ヒアリングメイン</span>の営業に切り替え<br>・お客さんが「欲しい」と思う順番で話す構成に変更<br>・営業の順番を変えただけで<span style="color: #1a3a8b; font-weight: 700;">成約率が2倍</span>に</p>
     </div>
 
     <!-- さとみさん -->
     <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-      <img src="illust-satomi.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <img src="illust-satomi.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
         <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さとみさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">量子力学セミナー講師</p>
@@ -477,14 +546,14 @@
       </div>
       <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：失注理由が毎回わからず、違う場所ばかり直していた</p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
-      <p style="font-size: 15px; color: #333; margin: 0 0 16px;"><span style="white-space: nowrap;">セミナーから<span style="font-size: 32px; font-weight: 700; color: #C8382B;">5件成約</span></span><br><span style="white-space: nowrap;">売上<span style="font-size: 32px; font-weight: 700; color: #C8382B;">200万円</span>超</span></p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">セミナーから<span class="result-num-big" style="font-size: 32px; font-weight: 700; color: #C8382B;">5件成約</span><br>売上<span class="result-num-big" style="font-size: 32px; font-weight: 700; color: #C8382B;">200万円</span>超</p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商談録画から<span style="color: #1a3a8b; font-weight: 700;">本当に直すべき場所</span>を特定するやり方に変更<br>・「何が悪かったかわからない」→「<span style="color: #1a3a8b; font-weight: 700;">次はここを直せばいい</span>」が明確に<br>・毎回違う場所を直す迷走がなくなった</p>
     </div>
 
     <!-- ゆうとさん -->
     <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-      <img src="illust-yuuto.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <img src="illust-yuuto.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
         <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">ゆうとさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">人材紹介営業</p>
@@ -492,14 +561,14 @@
       </div>
       <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：営業歴半年、毎月2〜3件で伸び悩み</p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
-      <p style="font-size: 15px; color: #333; margin: 0 0 16px; white-space: nowrap;">月の成約数　<span style="font-size: 28px; font-weight: 700; color: #333;">2〜3件</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">5〜6件</span><br><span style="font-size: 13px; color: #999; white-space: normal;">（2ヶ月後以降）</span></p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">月の成約数　<span class="result-num-before" style="font-size: 28px; font-weight: 700; color: #333;">2〜3件</span><br>→ <span class="result-num-big" style="font-size: 36px; font-weight: 700; color: #C8382B;">5〜6件</span><span style="font-size: 13px; color: #999;">（2ヶ月後以降）</span></p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・「説得する営業」から<span style="color: #1a3a8b; font-weight: 700;">質問で気づかせる営業</span>に変更<br>・相手が自分で「必要だ」と気づく質問設計を導入<br>・説得しないから<span style="color: #1a3a8b; font-weight: 700;">切り返しも起きなくなった</span></p>
     </div>
 
     <!-- まるさん -->
     <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-      <img src="illust-maru.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <img src="illust-maru.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
         <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">まるさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">マーケティングコンサルタント</p>
@@ -507,14 +576,14 @@
       </div>
       <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：営業の型がなく、成約が安定しなかった</p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
-      <p style="font-size: 15px; color: #333; margin: 0 0 16px;"><span style="white-space: nowrap;">売上　<span style="font-size: 28px; font-weight: 700; color: #333;">200万円</span><span style="font-size: 13px; color: #999;">（初月）</span></span><br><span style="white-space: nowrap;">→ <span style="font-size: 36px; font-weight: 700; color: #C8382B;">600万円</span><span style="font-size: 13px; color: #999;">（半年後）</span></span></p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">売上　<span class="result-num-before" style="font-size: 28px; font-weight: 700; color: #333;">200万円</span><span style="font-size: 13px; color: #999;">（初月）</span><br>→ <span class="result-num-big" style="font-size: 36px; font-weight: 700; color: #C8382B;">600万円</span><span style="font-size: 13px; color: #999;">（半年後）</span></p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・<span style="color: #1a3a8b; font-weight: 700;">潜在層にも売れる営業構造</span>を実装<br>・「まだ必要性を感じていない人」にも売れる商談設計に<br>・初月から大型成約を実現し、半年で<span style="color: #1a3a8b; font-weight: 700;">売上3倍</span>に成長</p>
     </div>
 
     <!-- やすのぶさん -->
     <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-      <img src="illust-yasunobu.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <img src="illust-yasunobu.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
         <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">やすのぶさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">集客コンサルタント</p>
@@ -522,7 +591,7 @@
       </div>
       <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：現状を聞いて提案する営業で、成約率が低迷</p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
-      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span style="font-size: 28px; font-weight: 700; color: #333;">10%</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">35%</span><span style="font-size: 13px; color: #999;">（1ヶ月）</span></p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span class="result-num-before" style="font-size: 28px; font-weight: 700; color: #333;">10%</span> → <span class="result-num-big" style="font-size: 36px; font-weight: 700; color: #C8382B;">35%</span><span style="font-size: 13px; color: #999;">（1ヶ月）</span></p>
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・現状ヒアリング→提案から、<span style="color: #1a3a8b; font-weight: 700;">気づいていない問題に気づかせてから提案</span>に変更<br>・<span style="color: #1a3a8b; font-weight: 700;">切り返しが起きづらい商談設計</span>を導入<br>・SNSで切り返し集を集める日々→<span style="color: #1a3a8b; font-weight: 700;">切り返しを勉強すること自体を撤廃</span></p>
     </div>
@@ -568,7 +637,7 @@
 
   <!-- 7-2. 変わったのは（ベージュ背景） -->
   <div class="text-section text-center beige" style="padding: 40px 28px;">
-    <p class="mincho" style="font-size: 32px; font-weight: 700; color: #222; line-height: 1.6; margin-bottom: 24px;">
+    <p class="mincho hero-heading-lg" style="font-size: 32px; font-weight: 700; color: #222; line-height: 1.6; margin-bottom: 24px;">
       変わったのは、<br>
       <span class="marker"><span style="color: #C8382B;">"順番"</span>を自分の商談に<br>合わせて整理しただけ。</span>
     </p>
@@ -600,7 +669,7 @@
 
   <!-- 7-4. 結論（ベージュ背景） -->
   <div class="text-section text-center beige" style="padding: 40px 28px;">
-    <p class="mincho" style="font-size: 32px; font-weight: 700; line-height: 1.6;">
+    <p class="mincho hero-heading-lg" style="font-size: 32px; font-weight: 700; line-height: 1.6;">
       <span style="color: #222;">それを一緒に整理するのが</span><br>
       <span class="marker"><span style="color: #C8382B;">無料の営業診断</span><span style="color: #222;">です。</span></span>
     </p>
@@ -645,9 +714,9 @@
       この動画を見た後、<br>
       あなたの営業に<br>
       「型」を当てはめてみたいと思ったら、<br><br>
-      <span class="bold" style="font-size: 30px;"><span class="marker">無料の営業診断で<br>一緒に整理しましょう。</span></span><br><br>
-      <span style="font-size: 17px; color: #555;">あなたの商談を聞いて、<br>
-      成約率が上がらない<br>本当の原因を診断します。</span>
+      <span class="bold closing-heading" style="font-size: 30px;"><span class="marker">無料の営業診断で<br>一緒に整理しましょう。</span></span><br><br>
+      <span style="font-size: 16px; color: #555;">あなたの商談を聞いて、<br>
+      成約率が上がらない本当の原因を診断します。</span>
     </p>
   </div>
 
