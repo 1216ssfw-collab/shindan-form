@@ -392,11 +392,20 @@
   </div>
 
   <!-- ========== 3. 動画セクション ========== -->
-  <div style="padding: 0; background: #F9F6F0;">
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe src="https://www.youtube.com/embed/dqAmDzq86jo?modestbranding=1&rel=0&showinfo=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div style="padding: 0; background: #000;">
+    <div id="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer;" onclick="playVideo()">
+      <img src="video-thumbnail.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; background: rgba(26,58,139,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 24px solid #fff; margin-left: 4px;"></div>
+      </div>
     </div>
   </div>
+  <script>
+  function playVideo() {
+    var wrapper = document.getElementById('video-wrapper');
+    wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/dqAmDzq86jo?autoplay=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&cc_load_policy=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  }
+  </script>
 
   <!-- CTA ① -->
   <div class="cta-section">
