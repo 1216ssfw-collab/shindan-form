@@ -237,6 +237,10 @@
     margin: 0 24px;
   }
 
+  /* ========== PC/スマホ出し分け ========== */
+  .pc-only { display: block; }
+  .sp-only { display: none; }
+
   /* ========== 区切りスペーサー ========== */
   .spacer {
     height: 20px;
@@ -383,6 +387,10 @@
       font-size: 15px;
       line-height: 1.9;
     }
+
+    /* PC/スマホ出し分け */
+    .pc-only { display: none !important; }
+    .sp-only { display: block !important; }
 
     /* CTA */
     .cta-btn {
@@ -597,7 +605,90 @@
   <!-- 実績カード -->
   <div class="result-cards-wrap" style="padding: 16px 24px; background: #F9F6F0;">
 
-    <!-- さちさん -->
+    <!-- ===== PC版カード ===== -->
+    <div class="pc-only">
+
+    <!-- さちさん PC -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-sachi.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さちさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">結婚式 前撮り営業</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：商品説明がメインで、毎回なんとなく商談していた</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span style="font-size: 28px; font-weight: 700; color: #333;">20%</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">40%</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商品説明から<span style="color: #1a3a8b; font-weight: 700;">ヒアリングメイン</span>の営業に切り替え<br>・お客さんが「欲しい」と思う順番で話す構成に変更<br>・営業の順番を変えただけで<span style="color: #1a3a8b; font-weight: 700;">成約率が2倍</span>に</p>
+    </div>
+
+    <!-- さとみさん PC -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-satomi.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さとみさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">量子力学セミナー講師</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：失注理由が毎回わからず、違う場所ばかり直していた</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">セミナーから<span style="font-size: 32px; font-weight: 700; color: #C8382B;">5件成約</span><br>売上<span style="font-size: 32px; font-weight: 700; color: #C8382B;">200万円</span>超</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商談録画から<span style="color: #1a3a8b; font-weight: 700;">本当に直すべき場所</span>を特定するやり方に変更<br>・「何が悪かったかわからない」→「<span style="color: #1a3a8b; font-weight: 700;">次はここを直せばいい</span>」が明確に<br>・毎回違う場所を直す迷走がなくなった</p>
+    </div>
+
+    <!-- ゆうとさん PC -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-yuuto.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">ゆうとさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">人材紹介営業</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：営業歴半年、毎月2〜3件で伸び悩み</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">月の成約数　<span style="font-size: 28px; font-weight: 700; color: #333;">2〜3件</span><br>→ <span style="font-size: 36px; font-weight: 700; color: #C8382B;">5〜6件</span><span style="font-size: 13px; color: #999;">（2ヶ月後以降）</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・「説得する営業」から<span style="color: #1a3a8b; font-weight: 700;">質問で気づかせる営業</span>に変更<br>・相手が自分で「必要だ」と気づく質問設計を導入<br>・説得しないから<span style="color: #1a3a8b; font-weight: 700;">切り返しも起きなくなった</span></p>
+    </div>
+
+    <!-- まるさん PC -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-maru.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">まるさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">マーケティングコンサルタント</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：営業の型がなく、成約が安定しなかった</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">売上　<span style="font-size: 28px; font-weight: 700; color: #333;">200万円</span><span style="font-size: 13px; color: #999;">（初月）</span><br>→ <span style="font-size: 36px; font-weight: 700; color: #C8382B;">600万円</span><span style="font-size: 13px; color: #999;">（半年後）</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・<span style="color: #1a3a8b; font-weight: 700;">潜在層にも売れる営業構造</span>を実装<br>・「まだ必要性を感じていない人」にも売れる商談設計に<br>・初月から大型成約を実現し、半年で<span style="color: #1a3a8b; font-weight: 700;">売上3倍</span>に成長</p>
+    </div>
+
+    <!-- やすのぶさん PC -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-yasunobu.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">やすのぶさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">集客コンサルタント</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：現状を聞いて提案する営業で、成約率が低迷</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span style="font-size: 28px; font-weight: 700; color: #333;">10%</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">35%</span><span style="font-size: 13px; color: #999;">（1ヶ月）</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・現状ヒアリング→提案から、<span style="color: #1a3a8b; font-weight: 700;">気づいていない問題に気づかせてから提案</span>に変更<br>・<span style="color: #1a3a8b; font-weight: 700;">切り返しが起きづらい商談設計</span>を導入<br>・SNSで切り返し集を集める日々→<span style="color: #1a3a8b; font-weight: 700;">切り返しを勉強すること自体を撤廃</span></p>
+    </div>
+
+    </div><!-- /pc-only -->
+
+    <!-- ===== スマホ版カード ===== -->
+    <div class="sp-only">
+
+    <!-- さちさん SP -->
     <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-sachi.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
@@ -612,7 +703,7 @@
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商品説明→<span style="color: #1a3a8b; font-weight: 700;">ヒアリングメイン</span>の営業に切替<br>・「欲しい」と思う順番で話す構成に変更<br>・営業の順番を変えただけで<span style="color: #1a3a8b; font-weight: 700;">成約率が2倍</span>に</p>
     </div>
 
-    <!-- さとみさん -->
+    <!-- さとみさん SP -->
     <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-satomi.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
@@ -627,7 +718,7 @@
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商談録画から<span style="color: #1a3a8b; font-weight: 700;">本当に直すべき場所</span>を特定<br>・「<span style="color: #1a3a8b; font-weight: 700;">次はここを直せばいい</span>」が明確に<br>・違う場所を直す迷走がなくなった</p>
     </div>
 
-    <!-- ゆうとさん -->
+    <!-- ゆうとさん SP -->
     <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-yuuto.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
@@ -642,7 +733,7 @@
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・「説得する営業」→<span style="color: #1a3a8b; font-weight: 700;">質問で気づかせる営業</span>に<br>・相手が自分で「必要だ」と気づく質問設計<br>・説得しないから<span style="color: #1a3a8b; font-weight: 700;">切り返しも起きなくなった</span></p>
     </div>
 
-    <!-- まるさん -->
+    <!-- まるさん SP -->
     <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-maru.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
@@ -657,7 +748,7 @@
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・<span style="color: #1a3a8b; font-weight: 700;">潜在層にも売れる営業構造</span>を実装<br>・必要性を感じていない人にも売れる商談設計<br>・初月から大型成約、半年で<span style="color: #1a3a8b; font-weight: 700;">売上3倍</span>に成長</p>
     </div>
 
-    <!-- やすのぶさん -->
+    <!-- やすのぶさん SP -->
     <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-yasunobu.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
@@ -671,6 +762,8 @@
       <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
       <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・気づいていない問題に<span style="color: #1a3a8b; font-weight: 700;">気づかせてから提案</span>に<br>・<span style="color: #1a3a8b; font-weight: 700;">切り返しが起きづらい商談設計</span>を導入<br>・切り返しの勉強を<span style="color: #1a3a8b; font-weight: 700;">すること自体を撤廃</span></p>
     </div>
+
+    </div><!-- /sp-only -->
 
   </div>
 
