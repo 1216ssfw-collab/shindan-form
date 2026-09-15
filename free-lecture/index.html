@@ -377,19 +377,30 @@
 
   /* ========== スマホ対応（480px以下） ========== */
   @media (max-width: 480px) {
+
+    /* ベースフォント */
+    body {
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
     /* CTA */
     .cta-btn {
-      font-size: 18px;
-      padding: 16px 20px;
-      gap: 8px;
+      font-size: 17px;
+      padding: 16px 16px;
+      gap: 6px;
     }
     .cta-btn .cta-sub {
-      font-size: 12px;
+      font-size: 11px;
     }
 
     /* セクション余白 */
     .text-section {
-      padding: 36px 20px;
+      padding: 32px 20px;
+    }
+    .text-section p {
+      font-size: 14px;
+      line-height: 2.0;
     }
 
     /* 見出し */
@@ -399,8 +410,8 @@
 
     /* 見出し帯 */
     .heading-band {
-      font-size: 18px;
-      padding: 14px 20px;
+      font-size: 17px;
+      padding: 14px 16px;
     }
 
     /* 囲みボックス */
@@ -409,39 +420,100 @@
       padding: 20px 16px;
     }
 
-    /* 実績カード内イラスト — 根本原因の修正 */
+    /* ===== 実績カード ===== */
     .card-illust {
-      width: 130px !important;
-      margin: -16px -16px 0 0 !important;
+      float: none !important;
+      display: block !important;
+      width: 120px !important;
+      margin: 0 auto 12px !important;
     }
-
-    /* 実績数字 */
     .result-num-big {
       font-size: 28px !important;
     }
     .result-num-before {
       font-size: 22px !important;
     }
+    .result-card {
+      padding: 20px 16px !important;
+    }
+    .result-card-name {
+      font-size: 20px !important;
+    }
 
-    /* 大見出し明朝 */
+    /* ===== 大見出し明朝 ===== */
     .hero-heading {
-      font-size: 28px !important;
+      font-size: 24px !important;
     }
     .hero-heading-lg {
-      font-size: 26px !important;
+      font-size: 22px !important;
+      line-height: 1.7 !important;
+    }
+
+    /* ===== 「この方達も以前は」3列ボックス ===== */
+    .three-col-box {
+      gap: 6px !important;
+    }
+    .three-col-item {
+      font-size: 13px !important;
+      padding: 14px 6px !important;
+    }
+
+    /* ===== 自分ごと化セクション ===== */
+    .jibungoto-heading {
+      font-size: 18px !important;
+    }
+    .jibungoto-sub {
+      font-size: 14px !important;
+    }
+    .jibungoto-big {
+      font-size: 20px !important;
+    }
+    .jibungoto-border-box {
+      font-size: 18px !important;
+      padding: 14px !important;
+    }
+    .step-box p {
+      font-size: 14px !important;
+    }
+
+    /* ===== 無料営業診断でわかること ===== */
+    .shindan-title {
+      font-size: 18px !important;
+    }
+    .shindan-item {
+      font-size: 13px !important;
+      padding-left: 32px !important;
+      text-indent: -32px !important;
     }
 
     /* クロージング */
     .closing-heading {
-      font-size: 24px !important;
+      font-size: 22px !important;
+    }
+    .closing-text {
+      font-size: 18px !important;
+      line-height: 2.0 !important;
+    }
+    .closing-sub {
+      font-size: 14px !important;
     }
 
     /* プロフィール */
     .profile-section {
-      padding: 36px 20px;
+      padding: 32px 20px;
     }
     .profile-section .profile-name {
-      font-size: 24px !important;
+      font-size: 22px !important;
+    }
+    .profile-section .profile-text {
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* アナウンス帯 */
+    .announce-bar {
+      font-size: 13px;
+      padding: 12px 16px;
     }
   }
 </style>
@@ -508,10 +580,10 @@
   <div style="padding: 16px 24px; background: #F9F6F0;">
 
     <!-- さちさん -->
-    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-sachi.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
-        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さちさん</p>
+        <p class="result-card-name" style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さちさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">結婚式 前撮り営業</p>
         <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
       </div>
@@ -523,10 +595,10 @@
     </div>
 
     <!-- さとみさん -->
-    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-satomi.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
-        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さとみさん</p>
+        <p class="result-card-name" style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さとみさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">量子力学セミナー講師</p>
         <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
       </div>
@@ -538,10 +610,10 @@
     </div>
 
     <!-- ゆうとさん -->
-    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-yuuto.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
-        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">ゆうとさん</p>
+        <p class="result-card-name" style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">ゆうとさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">人材紹介営業</p>
         <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
       </div>
@@ -553,10 +625,10 @@
     </div>
 
     <!-- まるさん -->
-    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-maru.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
-        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">まるさん</p>
+        <p class="result-card-name" style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">まるさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">マーケティングコンサルタント</p>
         <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
       </div>
@@ -568,10 +640,10 @@
     </div>
 
     <!-- やすのぶさん -->
-    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <div class="result-card" style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
       <img src="illust-yasunobu.png" class="card-illust" style="float: right; width: 200px; margin: -20px -20px 0 0;">
       <div style="margin-bottom: 12px;">
-        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">やすのぶさん</p>
+        <p class="result-card-name" style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">やすのぶさん</p>
         <p style="font-size: 13px; color: #999; margin: 0;">集客コンサルタント</p>
         <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
       </div>
@@ -599,19 +671,19 @@
 
   <!-- 7-1. この方達も以前は（白背景） -->
   <div class="text-section text-center" style="padding: 40px 28px;">
-    <p class="mincho" style="font-size: 20px; font-weight: 700; color: #222; margin-bottom: 24px;">この方達も以前は</p>
-    <div style="display: flex; gap: 10px; margin-bottom: 24px;">
-      <div style="flex: 1; background: #333; color: #fff; font-weight: 700; font-size: 16px; text-align: center; padding: 20px 10px; border-radius: 10px; line-height: 1.6;">クロージングを<br>極める</div>
-      <div style="flex: 1; background: #333; color: #fff; font-weight: 700; font-size: 16px; text-align: center; padding: 20px 10px; border-radius: 10px; line-height: 1.6;">切り返しを<br>覚える</div>
-      <div style="flex: 1; background: #333; color: #fff; font-weight: 700; font-size: 16px; text-align: center; padding: 20px 10px; border-radius: 10px; line-height: 1.6;">商品をしっかり<br>説明する</div>
+    <p class="mincho jibungoto-heading" style="font-size: 20px; font-weight: 700; color: #222; margin-bottom: 24px;">この方達も以前は</p>
+    <div class="three-col-box" style="display: flex; gap: 10px; margin-bottom: 24px;">
+      <div class="three-col-item" style="flex: 1; background: #333; color: #fff; font-weight: 700; font-size: 16px; text-align: center; padding: 20px 10px; border-radius: 10px; line-height: 1.6;">クロージングを<br>極める</div>
+      <div class="three-col-item" style="flex: 1; background: #333; color: #fff; font-weight: 700; font-size: 16px; text-align: center; padding: 20px 10px; border-radius: 10px; line-height: 1.6;">切り返しを<br>覚える</div>
+      <div class="three-col-item" style="flex: 1; background: #333; color: #fff; font-weight: 700; font-size: 16px; text-align: center; padding: 20px 10px; border-radius: 10px; line-height: 1.6;">商品をしっかり<br>説明する</div>
     </div>
-    <p class="mincho" style="font-size: 18px; font-weight: 700; color: #222; margin-bottom: 24px;">が大事だと思っていました…</p>
-    <p style="font-size: 16px; color: #222; line-height: 2.2;">
+    <p class="mincho jibungoto-sub" style="font-size: 18px; font-weight: 700; color: #222; margin-bottom: 24px;">が大事だと思っていました…</p>
+    <p class="jibungoto-sub" style="font-size: 16px; color: #222; line-height: 2.2;">
       でも実際は、<br>
       それを続けるほど<br>
       成約率が上がりにくくなっています。
     </p>
-    <p class="mincho" style="font-size: 24px; font-weight: 700; color: #222; margin-top: 32px; padding: 24px 20px; border: 3px solid #1a3a8b; border-radius: 8px; display: inline-block;">
+    <p class="mincho jibungoto-border-box" style="font-size: 24px; font-weight: 700; color: #222; margin-top: 32px; padding: 24px 20px; border: 3px solid #1a3a8b; border-radius: 8px; display: inline-block;">
       じゃあ、成約率が上がった人は<br>何をしたのか？
     </p>
     <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 24px;">
@@ -623,7 +695,7 @@
 
   <!-- 7-2. 変わったのは（ベージュ背景） -->
   <div class="text-section text-center beige" style="padding: 40px 28px;">
-    <p class="mincho hero-heading-lg" style="font-size: 32px; font-weight: 700; color: #222; line-height: 1.6; margin-bottom: 24px;">
+    <p class="mincho hero-heading-lg" style="font-size: 32px; font-weight: 700; color: #222; line-height: 1.7; margin-bottom: 24px;">
       変わったのは、<br>
       <span class="marker"><span style="color: #C8382B;">"順番"</span>を自分の商談に<br>合わせて整理しただけ。</span>
     </p>
@@ -635,19 +707,19 @@
       ただ、商品も相手も商談の流れも人それぞれ。<br>
       "順番"は同じでも、当てはめ方は一人ひとり違う。
     </p>
-    <p class="mincho" style="font-size: 22px; font-weight: 700; color: #1a3a8b; margin-bottom: 28px;">
+    <p class="mincho jibungoto-big" style="font-size: 22px; font-weight: 700; color: #1a3a8b; margin-bottom: 28px;">
       大事なのは
     </p>
     <div style="max-width: 400px; margin: 0 auto 16px; display: flex; flex-direction: column; align-items: center; gap: 0;">
-      <div style="width: 100%; border: 2px solid #1a3a8b; border-radius: 8px; padding: 16px; text-align: center; background: #fff;">
+      <div class="step-box" style="width: 100%; border: 2px solid #1a3a8b; border-radius: 8px; padding: 16px; text-align: center; background: #fff;">
         <p style="font-size: 16px; color: #222; font-weight: 700; margin: 0;">自分の商品にどう当てはめるか</p>
       </div>
       <div style="width: 2px; height: 16px; background: #1a3a8b;"></div>
-      <div style="width: 100%; border: 2px solid #1a3a8b; border-radius: 8px; padding: 16px; text-align: center; background: #fff;">
+      <div class="step-box" style="width: 100%; border: 2px solid #1a3a8b; border-radius: 8px; padding: 16px; text-align: center; background: #fff;">
         <p style="font-size: 16px; color: #222; font-weight: 700; margin: 0;">自分の商談のどこを直すか</p>
       </div>
       <div style="width: 2px; height: 16px; background: #1a3a8b;"></div>
-      <div style="width: 100%; border: 2px solid #1a3a8b; border-radius: 8px; padding: 16px; text-align: center; background: #fff;">
+      <div class="step-box" style="width: 100%; border: 2px solid #1a3a8b; border-radius: 8px; padding: 16px; text-align: center; background: #fff;">
         <p style="font-size: 16px; color: #222; font-weight: 700; margin: 0;">明日から何を変えるか</p>
       </div>
     </div>
@@ -655,18 +727,18 @@
 
   <!-- 7-4. 結論（ベージュ背景） -->
   <div class="text-section text-center beige" style="padding: 40px 28px;">
-    <p class="mincho hero-heading-lg" style="font-size: 32px; font-weight: 700; line-height: 1.6;">
+    <p class="mincho hero-heading-lg" style="font-size: 32px; font-weight: 700; line-height: 1.7;">
       <span style="color: #222;">それを一緒に整理するのが</span><br>
       <span class="marker"><span style="color: #C8382B;">無料の営業診断</span><span style="color: #222;">です。</span></span>
     </p>
   </div>
 
   <div style="background: #1a3a8b; padding: 48px 28px; text-align: center;">
-    <p class="mincho" style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 32px;">無料営業診断でわかること</p>
+    <p class="mincho shindan-title" style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 32px;">無料営業診断でわかること</p>
     <div style="text-align: left; max-width: 400px; margin: 0 auto;">
-      <p style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 2.0; margin-bottom: 16px; padding-left: 40px; text-indent: -40px;"><span style="color: #FFE873; font-weight: 700;">01</span>　あなたの商談で「検討します」が出る本当の原因</p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 2.0; margin-bottom: 16px; padding-left: 40px; text-indent: -40px;"><span style="color: #FFE873; font-weight: 700;">02</span>　営業の型をあなたの商品にどう当てはめるか</p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 2.0; padding-left: 40px; text-indent: -40px;"><span style="color: #FFE873; font-weight: 700;">03</span>　明日の商談から何を変えればいいかの具体的な一手</p>
+      <p class="shindan-item" style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 2.0; margin-bottom: 16px; padding-left: 40px; text-indent: -40px;"><span style="color: #FFE873; font-weight: 700;">01</span>　あなたの商談で「検討します」が出る本当の原因</p>
+      <p class="shindan-item" style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 2.0; margin-bottom: 16px; padding-left: 40px; text-indent: -40px;"><span style="color: #FFE873; font-weight: 700;">02</span>　営業の型をあなたの商品にどう当てはめるか</p>
+      <p class="shindan-item" style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 2.0; padding-left: 40px; text-indent: -40px;"><span style="color: #FFE873; font-weight: 700;">03</span>　明日の商談から何を変えればいいかの具体的な一手</p>
     </div>
   </div>
 
@@ -696,12 +768,12 @@
   </div>
 
   <div class="text-section text-center beige">
-    <p class="mincho" style="font-size: 22px; line-height: 2.0;">
+    <p class="mincho closing-text" style="font-size: 22px; line-height: 2.0;">
       この動画を見た後、<br>
       あなたの営業に<br>
       「型」を当てはめてみたいと思ったら、<br><br>
       <span class="bold closing-heading" style="font-size: 30px;"><span class="marker">無料の営業診断で<br>一緒に整理しましょう。</span></span><br><br>
-      <span style="font-size: 16px; color: #555;">あなたの商談を聞いて、<br>
+      <span class="closing-sub" style="font-size: 16px; color: #555;">あなたの商談を聞いて、<br>
       成約率が上がらない本当の原因を診断します。</span>
     </p>
   </div>
