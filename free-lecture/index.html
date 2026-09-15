@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無料動画講義｜営業の型</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    background: #1E1E1E;
+    color: #333;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #F9F6F0;
+    overflow: hidden;
+  }
+
+  /* ========== 明朝体ユーティリティ ========== */
+  .mincho {
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  }
+
+  /* ========== 1. アナウンス帯 ========== */
+  .announce-bar {
+    background: #1a3a8b;
+    color: #fff;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+  .announce-bar .sub {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.9;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ========== 2. FV ========== */
+  .fv-section {
+    background: #1E1E1E;
+    padding: 0;
+  }
+  .fv-image-placeholder {
+    width: 100%;
+    min-height: 420px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+    text-align: center;
+    padding: 40px 20px;
+    border: 2px dashed rgba(255,255,255,0.12);
+  }
+
+  /* ========== CTA共通 ========== */
+  .cta-section {
+    padding: 32px 24px;
+    text-align: center;
+    background: #F9F6F0;
+  }
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 28px;
+    background: #1a3a8b;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 9999px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    line-height: 1.5;
+    position: relative;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  .cta-btn .cta-arrow {
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .cta-btn .cta-text-wrap {
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2);
+  }
+  .cta-btn .cta-sub {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 2px;
+    opacity: 0.9;
+  }
+
+  /* CTAパルスアニメーション */
+  @keyframes cta-pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  .cta-btn {
+    animation: cta-pulse 2s ease-in-out infinite;
+  }
+  .cta-btn:hover {
+    animation: none;
+  }
+  .cta-note {
+    font-size: 11px;
+    color: #888;
+    margin-top: 10px;
+  }
+
+  /* ========== 画像プレースホルダー共通 ========== */
+  .img-placeholder {
+    width: 100%;
+    min-height: 280px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    font-size: 13px;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid #e8e3db;
+    border-bottom: 1px solid #e8e3db;
+  }
+  .img-placeholder.dark {
+    background: #1E1E1E;
+    color: rgba(255,255,255,0.3);
+    border-color: #333;
+  }
+
+  /* ========== テキストセクション ========== */
+  .text-section {
+    padding: 48px 28px;
+    background: #FFFFFF;
+  }
+  .text-section.beige {
+    background: #F9F6F0;
+  }
+  .text-section.dark {
+    background: #1E1E1E;
+    color: #fff;
+  }
+  .text-section.dark p {
+    color: rgba(255,255,255,0.85);
+  }
+  .text-section h2 {
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    color: #1a1a1a;
+  }
+  .text-section p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .text-section p:last-child {
+    margin-bottom: 0;
+  }
+  .text-section .accent {
+    color: #C8382B;
+    font-weight: 700;
+  }
+  .text-section .accent-orange {
+    color: #1a3a8b;
+    font-weight: 700;
+  }
+  .text-section .bold {
+    font-weight: 700;
+    color: #222;
+  }
+  .text-section.dark .bold {
+    color: #fff;
+  }
+  .text-section .small {
+    font-size: 14px;
+    color: #888;
+  }
+  .text-section.dark .small {
+    color: rgba(255,255,255,0.5);
+  }
+  .text-center {
+    text-align: center;
+  }
+
+  /* ========== マーカー装飾 ========== */
+  .marker {
+    background: linear-gradient(transparent 60%, #FFE873 60%);
+    padding: 0 2px;
+  }
+
+  /* ========== 見出し帯 ========== */
+  .heading-band {
+    background: #1a3a8b;
+    color: #fff;
+    text-align: center;
+    padding: 18px 24px;
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.4;
+  }
+
+  /* ========== 囲みボックス ========== */
+  .bordered-box {
+    border: 3px solid #1a3a8b;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding: 28px 24px;
+    margin: 0 24px;
+  }
+
+  /* ========== 区切りスペーサー ========== */
+  .spacer {
+    height: 20px;
+    background: #F9F6F0;
+  }
+  .spacer.dark {
+    background: #1E1E1E;
+  }
+
+  /* ========== 5. 落とし穴セクション ========== */
+  .mistake-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+  .mistake-list li {
+    position: relative;
+    padding: 14px 0 14px 36px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #333;
+    border-bottom: 1px solid #ede8e0;
+  }
+  .mistake-list li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    color: #C8382B;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* ========== 6. 講義内容リスト ========== */
+  .content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    counter-reset: content-counter;
+  }
+  .content-list li {
+    position: relative;
+    padding: 18px 0 18px 52px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #333;
+    border-bottom: 1px solid #ede8e0;
+    counter-increment: content-counter;
+  }
+  .content-list li::before {
+    content: counter(content-counter);
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 34px;
+    height: 34px;
+    background: #1a3a8b;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .content-list li strong {
+    color: #222;
+  }
+
+  /* ========== 実績変化表記 ========== */
+  .result-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    font-size: 15px;
+  }
+  .result-item .result-label {
+    color: #666;
+    min-width: 80px;
+  }
+  .result-item .result-arrow {
+    color: #1a3a8b;
+    font-weight: 700;
+  }
+  .result-item .result-after {
+    color: #C8382B;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  /* ========== 7. プロフィール ========== */
+  .profile-section {
+    padding: 48px 28px;
+    background: #FFFFFF;
+  }
+  .profile-section .profile-label {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 24px;
+    letter-spacing: 3px;
+    font-weight: 700;
+  }
+  .profile-img-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #ede8e0;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    font-size: 11px;
+    border: 3px solid #1a3a8b;
+  }
+  .profile-section .profile-name {
+    text-align: center;
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #222;
+  }
+  .profile-section .profile-title {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+  .profile-section .profile-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- ========== 1. アナウンス帯 ========== -->
+  <div class="announce-bar">
+    【重要】営業の成約率を本気で変えたい方への動画です
+    <span class="sub">※動画は期間限定公開となりますのでご注意ください</span>
+  </div>
+
+  <!-- ========== 2. ファーストビュー ========== -->
+  <div class="fv-section">
+    <img src="fv-image.png" alt="営業ノウハウを学んでも成約率が上がらない人へ｜営業無料講座" style="width: 100%; display: block;">
+  </div>
+
+  <!-- ========== 3. 動画セクション ========== -->
+  <div class="text-section text-center" style="padding: 32px 24px;">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <iframe src="https://www.youtube.com/embed/dqAmDzq86jo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- CTA ① -->
+  <div class="cta-section">
+    <a href="https://1216ssfw-collab.github.io/shindan-form/" class="cta-btn">
+      <span class="cta-arrow">▶</span>
+      <span class="cta-text-wrap">
+        <span class="cta-sub">＼ 動画を見た方限定 ／</span>
+        無料の営業診断に申し込む
+      </span>
+    </a>
+    <p class="cta-note">※LINE登録者限定・今週3名まで</p>
+  </div>
+
+  <!-- ========== 4. 共感・問題提示 ========== -->
+
+  <img src="empathy-section.png" alt="こんなお悩みありませんか？" style="width: 100%; display: block;">
+
+  <!-- ========== 5. 原因提示＋ストーリー導入 ========== -->
+
+  <div class="text-section text-center beige" style="padding: 56px 28px;">
+    <p style="font-size: 16px; color: #222; line-height: 2.2; margin-bottom: 8px;">
+      成約率が上がらない理由は、<br>
+      トーク力のせいでも、経験のせいでもありません。
+    </p>
+    <p style="font-size: 16px; color: #222; margin-bottom: 32px;">
+      ただ──
+    </p>
+    <p class="mincho" style="font-size: 36px; font-weight: 700; line-height: 1.4; margin-bottom: 40px;">
+      <span class="marker"><span style="color: #C8382B;">"正しい順番"</span><span style="color: #222;">を知らないだけ。</span></span>
+    </p>
+    <p style="font-size: 15px; color: #222; line-height: 2.2;">
+      僕自身も、<br>
+      そしてサポートしている方たちも、<br>
+      最初は<span class="bold">「売れない」「手探り」「自信ゼロ」</span>からのスタートでした。
+    </p>
+  </div>
+
+  <!-- ========== 6. 実績・社会的証明 ========== -->
+
+  <div class="heading-band mincho">受講生の変化</div>
+
+  <!-- 実績カード -->
+  <div style="padding: 16px 24px; background: #F9F6F0;">
+
+    <!-- さちさん -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-sachi.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さちさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">結婚式 前撮り営業</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：商品説明がメインで、毎回なんとなく商談していた</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span style="font-size: 28px; font-weight: 700; color: #333;">20%</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">40%</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商品説明から<span style="color: #1a3a8b; font-weight: 700;">ヒアリングメイン</span>の営業に切り替え<br>・お客さんが「欲しい」と思う順番で話す構成に変更<br>・営業の順番を変えただけで<span style="color: #1a3a8b; font-weight: 700;">成約率が2倍</span>に</p>
+    </div>
+
+    <!-- さとみさん -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-satomi.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">さとみさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">量子力学セミナー講師</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：失注理由が毎回わからず、違う場所ばかり直していた</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">セミナーから<span style="font-size: 32px; font-weight: 700; color: #C8382B;">5件成約</span>・売上<span style="font-size: 32px; font-weight: 700; color: #C8382B;">200万円</span>超</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・商談録画から<span style="color: #1a3a8b; font-weight: 700;">本当に直すべき場所</span>を特定するやり方に変更<br>・「何が悪かったかわからない」→「<span style="color: #1a3a8b; font-weight: 700;">次はここを直せばいい</span>」が明確に<br>・毎回違う場所を直す迷走がなくなった</p>
+    </div>
+
+    <!-- ゆうとさん -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-yuuto.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">ゆうとさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">人材紹介営業</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：営業歴半年、毎月2〜3件で伸び悩み</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">月の成約数　<span style="font-size: 28px; font-weight: 700; color: #333;">2〜3件</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">5〜6件</span><span style="font-size: 13px; color: #999;">（2ヶ月後以降）</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・「説得する営業」から<span style="color: #1a3a8b; font-weight: 700;">質問で気づかせる営業</span>に変更<br>・相手が自分で「必要だ」と気づく質問設計を導入<br>・説得しないから<span style="color: #1a3a8b; font-weight: 700;">切り返しも起きなくなった</span></p>
+    </div>
+
+    <!-- まるさん -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-maru.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">まるさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">マーケティングコンサルタント</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：営業の型がなく、成約が安定しなかった</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">売上　<span style="font-size: 28px; font-weight: 700; color: #333;">200万円</span><span style="font-size: 13px; color: #999;">（初月）</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">600万円</span><span style="font-size: 13px; color: #999;">（半年後）</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・<span style="color: #1a3a8b; font-weight: 700;">潜在層にも売れる営業構造</span>を実装<br>・「まだ必要性を感じていない人」にも売れる商談設計に<br>・初月から大型成約を実現し、半年で<span style="color: #1a3a8b; font-weight: 700;">売上3倍</span>に成長</p>
+    </div>
+
+    <!-- やすのぶさん -->
+    <div style="background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <img src="illust-yasunobu.png" style="float: right; width: 200px; margin: -20px -20px 0 0;">
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 22px; font-weight: 700; color: #222; margin: 0;">やすのぶさん</p>
+        <p style="font-size: 13px; color: #999; margin: 0;">集客コンサルタント</p>
+        <div style="width: 40px; height: 3px; background: #1a3a8b; margin-top: 6px;"></div>
+      </div>
+      <p style="font-size: 13px; color: #999; margin: 0 0 12px;">▶ 受講前：現状を聞いて提案する営業で、成約率が低迷</p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 4px;">▶ 受講後の成果</p>
+      <p style="font-size: 15px; color: #333; margin: 0 0 16px;">成約率　<span style="font-size: 28px; font-weight: 700; color: #333;">10%</span> → <span style="font-size: 36px; font-weight: 700; color: #C8382B;">35%</span><span style="font-size: 13px; color: #999;">（1ヶ月）</span></p>
+      <p style="font-size: 13px; color: #1a3a8b; font-weight: 700; margin: 0 0 6px;">▶ 変化のポイント</p>
+      <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.8;">・現状ヒアリング→提案から、<span style="color: #1a3a8b; font-weight: 700;">気づいていない問題に気づかせてから提案</span>に変更<br>・<span style="color: #1a3a8b; font-weight: 700;">切り返しが起きづらい商談設計</span>を導入<br>・SNSで切り返し集を集める日々→<span style="color: #1a3a8b; font-weight: 700;">切り返しを勉強すること自体を撤廃</span></p>
+    </div>
+
+  </div>
+
+  <!-- CTA ② -->
+  <div class="cta-section">
+    <a href="https://1216ssfw-collab.github.io/shindan-form/" class="cta-btn">
+      <span class="cta-arrow">▶</span>
+      <span class="cta-text-wrap">
+        <span class="cta-sub">＼ 動画を見た方限定 ／</span>
+        無料の営業診断に申し込む
+      </span>
+    </a>
+  </div>
+
+  <!-- ========== 7. 自分ごと化セクション ========== -->
+
+  <div class="text-section text-center" style="padding: 56px 28px;">
+    <p style="font-size: 15px; color: #222; line-height: 2.2; margin-bottom: 32px;">
+      この方たちも、最初は同じ悩みを持っていました。<br><br>
+      「検討します」で終わる。<br>
+      切り返しを覚えても変わらない。<br>
+      毎回アドリブで再現性がない。
+    </p>
+    <p class="mincho" style="font-size: 22px; font-weight: 700; color: #222; line-height: 1.6; margin-bottom: 24px;">
+      変わったのは、たった1つ。
+    </p>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 24px;">
+      <svg width="60" height="24" viewBox="0 0 60 24"><polygon points="0,0 60,0 30,24" fill="rgba(26,58,139,0.25)"/></svg>
+      <svg width="60" height="24" viewBox="0 0 60 24"><polygon points="0,0 60,0 30,24" fill="rgba(26,58,139,0.5)"/></svg>
+      <svg width="60" height="24" viewBox="0 0 60 24"><polygon points="0,0 60,0 30,24" fill="#1a3a8b"/></svg>
+    </div>
+    <p class="mincho" style="font-size: 28px; font-weight: 700; line-height: 1.4; margin-bottom: 40px;">
+      <span class="marker">営業の<span style="color: #C8382B;">"順番"</span>を<br>自分の商談に合わせて整理した</span>
+    </p>
+    <p style="font-size: 15px; color: #222; line-height: 2.2; margin-bottom: 8px;">
+      でも、商品も相手も商談の流れも人それぞれ。<br>
+      だから「型」を知っただけでは足りない。
+    </p>
+    <p style="font-size: 16px; color: #222; margin-bottom: 32px;">
+      大事なのは──
+    </p>
+    <div style="max-width: 500px; margin: 0 auto 36px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="background: #F9F6F0; border-radius: 10px; padding: 18px 24px; text-align: left;">
+        <p style="font-size: 15px; color: #333; margin: 0; line-height: 1.8;">自分の商品に<span class="bold">どう当てはめるか</span></p>
+      </div>
+      <div style="background: #F9F6F0; border-radius: 10px; padding: 18px 24px; text-align: left;">
+        <p style="font-size: 15px; color: #333; margin: 0; line-height: 1.8;">自分の商談の<span class="bold">どこを直すか</span></p>
+      </div>
+      <div style="background: #F9F6F0; border-radius: 10px; padding: 18px 24px; text-align: left;">
+        <p style="font-size: 15px; color: #333; margin: 0; line-height: 1.8;">明日から<span class="bold">何を変えるか</span></p>
+      </div>
+    </div>
+    <p class="mincho" style="font-size: 28px; font-weight: 700; line-height: 1.4;">
+      <span style="color: #222;">それを一緒に整理するのが</span><br>
+      <span class="marker"><span style="color: #C8382B;">無料の営業診断</span><span style="color: #222;">です。</span></span>
+    </p>
+  </div>
+
+  <div style="background: #1a1a2e; padding: 48px 24px; text-align: center;">
+    <p style="color: rgba(255,255,255,0.6); font-size: 13px; letter-spacing: 3px; margin-bottom: 16px;">WHAT YOU GET</p>
+    <p class="mincho" style="color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 32px;">無料営業診断でわかること</p>
+    <div style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px;">
+      <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 18px 24px; text-align: left;">
+        <p style="color: #fff; font-size: 15px; margin: 0; line-height: 1.8;"><span style="color: #FFE873; font-weight: 700;">01</span>　あなたの商談で「検討します」が出る本当の原因</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 18px 24px; text-align: left;">
+        <p style="color: #fff; font-size: 15px; margin: 0; line-height: 1.8;"><span style="color: #FFE873; font-weight: 700;">02</span>　営業の型をあなたの商品にどう当てはめるか</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 18px 24px; text-align: left;">
+        <p style="color: #fff; font-size: 15px; margin: 0; line-height: 1.8;"><span style="color: #FFE873; font-weight: 700;">03</span>　明日の商談から何を変えればいいかの具体的な一手</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA ③ -->
+  <div class="cta-section">
+    <a href="https://1216ssfw-collab.github.io/shindan-form/" class="cta-btn">
+      <span class="cta-arrow">▶</span>
+      <span class="cta-text-wrap">
+        <span class="cta-sub">＼ 動画を見た方限定 ／</span>
+        無料の営業診断に申し込む
+      </span>
+    </a>
+  </div>
+
+  <!-- ========== 8. クロージング（プロフィール） ========== -->
+
+  <div class="profile-section">
+    <p class="profile-label">PROFILE</p>
+    <img src="profile-photo.jpg" alt="菅谷秀翔" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid #1a3a8b; display: block; margin: 0 auto 20px;">
+    <p class="profile-name">菅谷秀翔</p>
+    <p class="profile-title">セールスプロデューサー</p>
+    <p class="profile-text">
+      魚を捌くキャリアからスタートし、個人事業主として採用特化SNSマーケティング・コーチング業を経験。無形高単価サービスで月1,800万円の売上を達成。<br><br>
+      現在はその経験をもとに、営業の「型」をその人の事業にカスタムで実装する「セールスプロデュース」を提供。スクリプト作成・商談設計・クロージング設計で成約率を改善している。<br><br>
+      大事にしていることは、「答えを教える」のではなく「気づきを渡す」こと。
+    </p>
+  </div>
+
+  <div class="text-section text-center beige">
+    <p class="mincho" style="font-size: 18px; line-height: 2.0;">
+      この動画を見た後、<br>
+      あなたの営業に<br>
+      「型」を当てはめてみたいと思ったら、<br><br>
+      <span class="bold" style="font-size: 22px;"><span class="marker">無料の営業診断で<br>一緒に整理しましょう。</span></span><br><br>
+      <span class="small">あなたの商談を聞いて、<br>
+      成約率が上がらない本当の原因を診断します。</span>
+    </p>
+  </div>
+
+  <!-- CTA ⑤（最終） -->
+  <div class="cta-section" style="padding: 40px 24px;">
+    <a href="https://1216ssfw-collab.github.io/shindan-form/" class="cta-btn">
+      <span class="cta-arrow">▶</span>
+      <span class="cta-text-wrap">
+        <span class="cta-sub">＼ 動画を見た方限定 ／</span>
+        無料の営業診断に申し込む
+      </span>
+    </a>
+    <p class="cta-note">※LINE登録者限定・今週3名まで</p>
+  </div>
+
+</div>
+
+</body>
+</html>
