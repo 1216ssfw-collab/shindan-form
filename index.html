@@ -655,18 +655,34 @@
         callback();
       })
       .catch(function() {
-        // API取得失敗時はマスターデータをそのまま使う
-        availableSlots = JSON.parse(JSON.stringify(masterSlots));
+        // API取得失敗時は予約済みの除外なしで空き枠を作る（当日ルールは適用）
+        bookedData = [];
+        updateAvailableSlots();
         callback();
       });
   }
+
+  // 当日予約は不可。例外的に当日も受け付ける枠だけここに書く
+  var sameDayAllowed = {
+    '2026-09-29': ['20:00〜21:00']
+  };
 
   // マスターから予約済みを除外して空き枠を更新
   function updateAvailableSlots() {
     availableSlots = {};
     var dayNames = ['日','月','火','水','木','金','土'];
+    var now = new Date();
+    var todayStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
 
     Object.keys(masterSlots).forEach(function(dateStr) {
+      // 当日以前は例外枠を除いて出さない
+      if (dateStr < todayStr) return;
+      var slotsOfDay = masterSlots[dateStr];
+      if (dateStr === todayStr) {
+        var allowed = sameDayAllowed[dateStr] || [];
+        slotsOfDay = slotsOfDay.filter(function(slot) { return allowed.indexOf(slot) !== -1; });
+      }
+
       var parts = dateStr.split('-');
       var y = parseInt(parts[0]);
       var m = parseInt(parts[1]);
@@ -674,7 +690,7 @@
       var dow = new Date(y, m - 1, d).getDay();
       var dayName = dayNames[dow];
 
-      var remaining = masterSlots[dateStr].filter(function(slot) {
+      var remaining = slotsOfDay.filter(function(slot) {
         // 「2026年8月28日（金）20:00〜21:00」形式で比較（空白除去済み）
         var bookedStr = (y + '年' + m + '月' + d + '日（' + dayName + '）' + slot).replace(/\s+/g, '');
         return bookedData.indexOf(bookedStr) === -1;
