@@ -662,6 +662,14 @@
       var dow = new Date(y, m - 1, d).getDay();
       var dayName = dayNames[dow];
 
+      // 毎週火曜の10:00〜13:00は予約不可
+      if (dow === 2) {
+        slotsOfDay = slotsOfDay.filter(function(slot) {
+          var startHour = parseInt(slot.split(':')[0]);
+          return startHour < 10 || startHour >= 13;
+        });
+      }
+
       var remaining = slotsOfDay.filter(function(slot) {
         // 「2026年8月28日（金）20:00〜21:00」形式で比較（空白除去済み）
         var bookedStr = (y + '年' + m + '月' + d + '日（' + dayName + '）' + slot).replace(/\s+/g, '');
