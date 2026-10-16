@@ -588,7 +588,7 @@
   let selectedTime = null;
 
   // 予約可能な日程と時間枠（APIがGoogleカレンダーから作る）
-  // 無料個別コンサル・赤系の予定・アムール・営業診断会など、避ける予定の前後30分を外して1日最大3枠
+  // 無料個別コンサル・赤系の予定・アムール・営業診断会など、避ける予定の前後30分を外して1日最大3枠（このページ側で週3名までに絞る）
   var masterSlots = {};
 
   // 実際に表示する空き枠（予約済みを除外した後のデータ）
@@ -622,9 +622,29 @@
   var sameDayAllowed = {
   };
 
+  // 1週間（月曜〜日曜）の上限。予約済みがこの数に達した週は枠を出さない
+  var WEEKLY_LIMIT = 3;
+  function weekKey(y, m, d) {
+    var dt = new Date(y, m - 1, d);
+    var back = (dt.getDay() + 6) % 7; // 月曜まで戻る日数
+    dt.setDate(dt.getDate() - back);
+    return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate();
+  }
+  function bookedPerWeek() {
+    var counts = {};
+    bookedData.forEach(function(s) {
+      var mt = s.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+      if (!mt) return;
+      var k = weekKey(parseInt(mt[1]), parseInt(mt[2]), parseInt(mt[3]));
+      counts[k] = (counts[k] || 0) + 1;
+    });
+    return counts;
+  }
+
   // マスターから予約済みを除外して空き枠を更新
   function updateAvailableSlots() {
     availableSlots = {};
+    var weekCounts = bookedPerWeek();
     var dayNames = ['日','月','火','水','木','金','土'];
     var now = new Date();
     var todayStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
@@ -644,6 +664,9 @@
       var d = parseInt(parts[2]);
       var dow = new Date(y, m - 1, d).getDay();
       var dayName = dayNames[dow];
+
+      // その週の予約が上限に達していたら、その週は枠を出さない
+      if ((weekCounts[weekKey(y, m, d)] || 0) >= WEEKLY_LIMIT) return;
 
       // 毎週火曜の10:00〜13:00は予約不可
       if (dow === 2) {
